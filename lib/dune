@@ -1,2 +1,3 @@
 (library
- (name website))
+ (name website)
+ (libraries dream))

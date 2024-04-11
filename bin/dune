@@ -1,4 +1,4 @@
 (executable
  (public_name website)
  (name main)
- (libraries website eliom))
+ (libraries dream))
