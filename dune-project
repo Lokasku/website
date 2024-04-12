@@ -19,7 +19,7 @@
  (name website)
  (synopsis "My personal website")
  (description "My very personal website")
- (depends ocaml dune dream)
+ (depends ocaml dune dream dream-html)
  (tags
   (topics "website")))
 

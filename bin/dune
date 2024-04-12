@@ -1,4 +1,4 @@
 (executable
- (public_name website)
+ (public_name main)
  (name main)
- (libraries dream))
+ (libraries dream dream-html website))

@@ -21,9 +21,15 @@
           opam
           ocaml
           dune_3
+        
           ocamlPackages.findlib
           ocamlPackages.ocaml-lsp
-        ] ++ [ ocamlPackages.dream ];
+          ocamlPackages.dream
+          ocamlPackages.dream-html
+          ocamlPackages.ocamlformat_0_26_0
+
+          nodePackages_latest.tailwindcss
+        ];
       };
     };
 }

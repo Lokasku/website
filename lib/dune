@@ -1,3 +1,5 @@
+(include_subdirs unqualified)
+
 (library
  (name website)
- (libraries dream))
+ (libraries dream dream-html))
