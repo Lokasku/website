@@ -1,34 +1,59 @@
 open Website.Article
-open Website.Articles
+open Website.Collection
 open Dream_html
 open HTML
 
-let arts =
-  div [] (List.mapi (fun i article ->
-    div [class_ "m-3"]
-      [
-        p [class_ "inline"]
-          [ 
-            a [class_ "font-semibold text-xl text-gray-800"; href "https://lokasku.dev/"] [ txt "%s" article.title ];
-            span [class_ "text-gray-500"] [ txt " — %s" article.date ];
-          ];
-        div [] (List.map (fun tag -> p [class_ "inline font-mono text-violet-500"] [ txt "(%s) " tag]) (Array.to_list article.tags));
-      ]
-  ) articles)
+let art_list =
+  div []
+    (List.mapi
+       (fun i article ->
+         div
+           [ class_ "mx-7 my-5" ]
+           [
+             p
+               [ class_ "inline" ]
+               [
+                 a
+                   [
+                     class_ "font-semibold text-xl text-gray-800";
+                     href "/article/%d" i;
+                   ]
+                   [ txt "%s" article.title ];
+                 span [ class_ "text-gray-500" ] [ txt " — %s" article.date ];
+               ];
+             div [class_ "mt-0.5"]
+               (List.map
+                  (fun tag ->
+                    p
+                      [ class_ "inline font-mono text-violet-500" ]
+                      [ txt "(%s) " tag ])
+                  (Array.to_list article.tags));
+                  hr [class_ "my-5"]
+           ])
+       all_article)
 
-let format_article article =
-  div [class_ "m-3"]
+let art_view article =
+  div
+    [ class_ "mx-7 my-5" ]
     [
-      p [class_ "inline"]
+      p
+        [ class_ "inline" ]
         [
-          a [class_ "font-semibold text-xl text-gray-800"; href "#"] [ txt "%s" article.title ];
-          span [class_ "text-gray-500"] [ txt " — %s" article.date ];
+          a
+            [ class_ "font-semibold text-xl text-gray-800" ]
+            [ txt "%s" article.title ];
+          span [ class_ "text-gray-500" ] [ txt " — %s" article.date ];
         ];
-      div [] (List.map (fun tag -> p [class_ "inline font-mono text-violet-500"] [ txt "(%s) " tag]) (Array.to_list article.tags));
-      article.content;
+      div [class_ "mt-0.5"]
+        (List.map
+           (fun tag ->
+             p [ class_ "inline font-mono text-violet-500" ] [ txt "(%s) " tag ])
+           (Array.to_list article.tags));
+      hr [class_ "my-4"];
+      article.content
     ]
 
-let home content =
+let layout content =
   html
     [ lang "en" ]
     [
@@ -36,15 +61,13 @@ let home content =
         [
           title [] "Lokasku";
           meta [ charset "utf-8" ];
-          link [ rel "stylesheet"; href "static/output.css" ];
+          link [ rel "stylesheet"; href "/static/output.css" ];
         ];
       body
         [ class_ "flex justify-center items-center" ]
         [
           div
             [ class_ "h-screen border-l border-r border-gray-300 w-1/3" ]
-            [
-              content;
-            ];
+            [ content ];
         ];
     ]

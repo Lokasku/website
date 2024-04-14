@@ -1,26 +1,21 @@
-open Website.Articles
+open Website.Collection
 open Dream_html
 open HTML
 
-let count = ref 0
-
-let counter inner_handler request =
-  count := !count + 1;
-  inner_handler request
-
 let () =
   Dream.run (* ~interface:"0.0.0.0" *) ~port:2048
-  @@ Dream.logger @@ counter
+  @@ Dream.logger
   @@ Dream.router
        [
-         Dream.get "/" (fun _ -> Dream_html.respond (Template.home Template.arts));
+         Dream.get "/" (fun _ ->
+             Dream_html.respond (Template.layout Template.art_list));
          Dream.get "/article/:id" (fun req ->
-          try
-            let index = int_of_string (Dream.param req "id") in
-            let article = List.nth articles index in
-            Dream_html.respond (Template.home (Template.format_article article))
-          with
-          | Failure _ -> Dream_html.respond (p [] [ txt "Error: Article not found" ]));
+             try
+               let index = int_of_string (Dream.param req "id") in
+               let article = List.nth all_article index in
+               Dream_html.respond (Template.layout (Template.art_view article))
+             with Failure _ ->
+               Dream_html.respond (p [] [ txt "Sorry, article %s does not exist in this space-time continuum." @@ Dream.param req "id"]));
          Dream.get "/static/:file" (fun req ->
              let file = Dream.param req "file" in
              let content =
