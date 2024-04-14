@@ -21,14 +21,15 @@ let art_list =
                    [ txt "%s" article.title ];
                  span [ class_ "text-gray-500" ] [ txt " — %s" article.date ];
                ];
-             div [class_ "mt-0.5"]
+             div
+               [ class_ "mt-0.5" ]
                (List.map
                   (fun tag ->
                     p
                       [ class_ "inline font-mono text-violet-500" ]
                       [ txt "(%s) " tag ])
                   (Array.to_list article.tags));
-                  hr [class_ "my-5"]
+             hr [ class_ "my-5" ];
            ])
        all_article)
 
@@ -44,13 +45,14 @@ let art_view article =
             [ txt "%s" article.title ];
           span [ class_ "text-gray-500" ] [ txt " — %s" article.date ];
         ];
-      div [class_ "mt-0.5"]
+      div
+        [ class_ "mt-0.5" ]
         (List.map
            (fun tag ->
              p [ class_ "inline font-mono text-violet-500" ] [ txt "(%s) " tag ])
            (Array.to_list article.tags));
-      hr [class_ "my-4"];
-      article.content
+      hr [ class_ "my-4" ];
+      article.content;
     ]
 
 let layout content =

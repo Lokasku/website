@@ -15,7 +15,14 @@ let () =
                let article = List.nth all_article index in
                Dream_html.respond (Template.layout (Template.art_view article))
              with Failure _ ->
-               Dream_html.respond (p [] [ txt "Sorry, article %s does not exist in this space-time continuum." @@ Dream.param req "id"]));
+               Dream_html.respond
+                 (p []
+                    [
+                      txt
+                        "Sorry, article %s does not exist in this space-time \
+                         continuum."
+                      @@ Dream.param req "id";
+                    ]));
          Dream.get "/static/:file" (fun req ->
              let file = Dream.param req "file" in
              let content =
