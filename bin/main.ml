@@ -3,7 +3,7 @@ open Dream_html
 open HTML
 
 let () =
-  Dream.run (* ~interface:"0.0.0.0" *) ~port:2048
+  Dream.run ~interface:"0.0.0.0" ~port:2048
   @@ Dream.logger
   @@ Dream.router
        [
