@@ -5,7 +5,7 @@ let article : Article.article =
   {
     title = "Lambda Calculus";
     date = "2024-04-14";
-    tags = [| "cs"; "mathematics"; "pl"; "fp"; "lc" |];
+    tags = [| "cs"; "mathematics"; "pl"; "fp"; "lc"; "nix" |];
     content =
       p []
         [

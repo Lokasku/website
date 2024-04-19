@@ -6,6 +6,9 @@
 
 @layer base {
     p {
-        @apply text-base font-normal;
+        @apply text-lg font-normal;
+    }
+    .content p {
+        @apply leading-relaxed text-xl text-gray-800;        ;
     }
 }

@@ -5,7 +5,7 @@ let article : Article.article =
   {
     title = "Introduction";
     date = "2024-04-14";
-    tags = [||];
+    tags = [| "math" |];
     content =
       p []
         [

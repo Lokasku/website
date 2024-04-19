@@ -3,17 +3,23 @@ open Dream_html
 open HTML
 
 let () =
-  Dream.run ~interface:"0.0.0.0" ~port:2048
-  @@ Dream.logger
+  Dream.run (* ~interface:"0.0.0.0" *) ~port:2048
+  @@ Dream.logger @@ Dream.memory_sessions
   @@ Dream.router
        [
-         Dream.get "/" (fun _ ->
-             Dream_html.respond (Template.layout Template.art_list));
+         Dream.get "/" (fun req ->
+             Dream_html.respond (Template.layout Template.art_list req));
+         Dream.post "/" (fun req ->
+             match%lwt Dream.form req with
+             | `Ok [ ("search", search) ] ->
+                 Dream_html.respond (p [] [ txt "%s" search ])
+             | _ -> Dream.empty `Bad_Request);
          Dream.get "/article/:id" (fun req ->
              try
                let index = int_of_string (Dream.param req "id") in
                let article = List.nth all_article index in
-               Dream_html.respond (Template.layout (Template.art_view article))
+               Dream_html.respond
+                 (Template.layout (Template.art_view article) req)
              with Failure _ ->
                Dream_html.respond
                  (p []

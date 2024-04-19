@@ -7,7 +7,7 @@
 
   outputs = { self, nixpkgs, ocaml-overlay }:
     let
-      system = "aarch64-linux";
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
@@ -21,12 +21,13 @@
           opam
           ocaml
           dune_3
+          nodejs_21
         
           ocamlPackages.findlib
-          # ocamlPackages.ocaml-lsp
+          ocamlPackages.ocaml-lsp
           ocamlPackages.dream
           ocamlPackages.dream-html
-          # ocamlPackages.ocamlformat_0_26_0
+          ocamlPackages.ocamlformat_0_26_0
 
           nodePackages_latest.tailwindcss
         ];
