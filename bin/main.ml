@@ -3,16 +3,18 @@ open Dream_html
 open HTML
 
 let () =
-  Dream.run (* ~interface:"0.0.0.0" *) ~port:2048
+  Dream.run ~interface:"0.0.0.0" ~port:2048
   @@ Dream.logger @@ Dream.memory_sessions
   @@ Dream.router
        [
          Dream.get "/" (fun req ->
-             Dream_html.respond (Template.layout Template.art_list req));
+             Dream_html.respond (Template.layout (Template.art_list all_article) req));
          Dream.post "/" (fun req ->
              match%lwt Dream.form req with
              | `Ok [ ("search", search) ] ->
-                 Dream_html.respond (p [] [ txt "%s" search ])
+              let splited_tags = Str.split (Str.regexp " ") search in
+              let filtered_articles = filter_articles_by_tags (Array.of_list splited_tags) in
+                 Dream_html.respond (Template.layout (Template.art_list filtered_articles) req)
              | _ -> Dream.empty `Bad_Request);
          Dream.get "/article/:id" (fun req ->
              try

@@ -1,5 +1,5 @@
 open Website.Article
-open Website.Collection
+(* open Website.Collection *)
 open Dream_html
 open HTML
 
@@ -26,9 +26,9 @@ let search request =
         ];
     ]
 
-let art_list =
+let art_list arts =
   div []
-    (List.mapi
+    (List.rev (List.mapi
        (fun i article ->
          div []
            [
@@ -52,7 +52,7 @@ let art_list =
                   (Array.to_list article.tags));
              hr [ class_ "my-5" ];
            ])
-       all_article)
+      arts))
 
 let art_view article =
   div []
