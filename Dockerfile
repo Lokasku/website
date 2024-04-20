@@ -26,5 +26,4 @@ RUN eval $(opam env)
 
 RUN opam exec -- dune build
 EXPOSE 2048/tcp
-# CMD ["./_build/default/bin/main.exe"]
 CMD ["dune", "exec", "bin/main.exe"]

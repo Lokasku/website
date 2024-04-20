@@ -9,6 +9,7 @@ type article = {
 
 let common_tags =
   [
-    ("nix", ("bg-cyan-100/50", "border-sky-200/50"));
-    ("math", ("bg-violet-200/40", "border-violet-300/25"));
+    (* name_tag, (background, border, text-color)*)
+    ("nix", ("bg-cyan-100/50", "border-sky-200/50", "text-sky-500"));
+    ("math", ("bg-violet-200/40", "border-violet-300/25", "text-violet-500"));
   ]

@@ -1,14 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    p {
-        @apply text-lg font-normal;
+    p, a {
+        @apply text-lg font-normal leading-relaxed py-2.5 text-slate-700;
     }
-    .content p {
-        @apply leading-relaxed text-xl text-gray-800;        ;
+    a {
+        @apply font-medium text-blue-700 hover:underline;
+    }
+    hr {
+        @apply my-2 border-gray-400;
     }
 }

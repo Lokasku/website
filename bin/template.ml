@@ -1,79 +1,137 @@
 open Website.Article
-(* open Website.Collection *)
+open Utils
 open Dream_html
 open HTML
 
-let get_style tag =
-  let base =
-    "inline font-mono text-gray-500 border rounded-lg px-1.5 py-0.5 mr-1"
-  in
-  match List.find_opt (fun (x, _) -> x = tag) common_tags with
-  | Some (_, (background, border)) ->
-      Printf.sprintf "%s %s %s" base border background
-  | None -> base
-
 let search request =
-  form
-    [ class_ "mb-6"; method_ `POST; action "/" ]
+  div
+    [ class_ "flex justify-center mb-5 mt-3" ]
     [
-      csrf_tag request;
-      input
+      form
+        [ class_ "w-full"; method_ `POST; action "/" ]
         [
-          class_ "w-full border rounded-lg px-2 py-1";
-          name "search";
-          placeholder "Search";
-          type_ "text";
+          csrf_tag request;
+          input
+            [
+              class_
+                "w-full border rounded-lg px-2 py-1 focus:outline-none \
+                 focus:border-slate-300";
+              name "search";
+              placeholder "Search for tags separated by spaces";
+              type_ "text";
+            ];
+        ];
+    ]
+
+let back_to_homepage =
+  p
+    [ class_ "mb-5" ]
+    [
+      a [ class_ "hover:no-underline"; href "/" ] [ txt "<- Back to home page" ];
+    ]
+
+let presentation =
+  div []
+    [
+      h1 [ class_ "text-4xl font-bold text-slate-700" ] [ txt "lokasku" ];
+      br [];
+      p []
+        [
+          txt
+            "Welcome, my name is Lokasku, I'm 16 years old and I'm currently \
+             in 11th grade.\n\
+            \      I'm a French citizen and have dual Polish nationality. My \
+             main interests are computer science,\n\
+            \      mathematics and linguistics, but I mainly do programming.";
+        ];
+      a
+        [ href "/article/0" ]
+        [
+          txt
+            "A more suitable presentation of myself and this blog can be found \
+             here.";
+        ];
+      p []
+        [
+          txt "You can contact me at lukasku at proton dot me and find me on ";
+          a [ href "https://github.com/Lokasku" ] [ txt "GitHub" ];
+          txt " or ";
+          a [ href "https://x.com/lokasku" ] [ txt "X" ];
+          txt ".";
+        ];
+    ]
+
+let footer =
+  div
+    [ class_ "mt-5" ]
+    [
+      br [];
+      hr [];
+      p []
+        [
+          txt "© %s Lokasku" (string_of_int (current_year ()));
+          br [];
+          txt "Licensed under ";
+          a
+            [ href "https://creativecommons.org/licenses/by-nc/4.0/deed.fr" ]
+            [ txt "CC BY-NC 4.0 DEED" ];
+          txt ".";
         ];
     ]
 
 let art_list arts =
   div []
-    (List.rev (List.mapi
-       (fun i article ->
-         div []
-           [
-             p
-               [ class_ "inline" ]
-               [
-                 a
-                   [
-                     class_
-                       "font-semibold text-2xl text-gray-800 mr-2 break-words";
-                     href "/article/%d" i;
-                   ]
-                   [ txt "%s" article.title ];
-                 span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
-               ];
-             div
-               [ class_ "mt-3" ]
-               (List.map
-                  (fun tag ->
-                    p [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
-                  (Array.to_list article.tags));
-             hr [ class_ "my-5" ];
-           ])
-      arts))
+    (List.rev
+       (List.mapi
+          (fun i article ->
+            div
+              [
+                class_
+                  "my-5 p-3 rounded-md border border-gray-200 bg-gray-100/25";
+              ]
+              [
+                p
+                  [ class_ "inline" ]
+                  [
+                    a
+                      [
+                        class_
+                          "break-words pr-2 text-xl font-semibold text-gray-600";
+                        href "/article/%d" i;
+                      ]
+                      [ txt "%s" article.title ];
+                    span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
+                  ];
+                ul
+                  [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
+                  (List.map
+                     (fun tag ->
+                       li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
+                     (Array.to_list article.tags));
+              ])
+          arts))
 
 let art_view article =
   div []
     [
+      back_to_homepage;
       p
         [ class_ "inline" ]
         [
-          a
-            [ class_ "font-bold text-3xl text-gray-800 mr-2" ]
+          span
+            [ class_ "text-4xl font-bold text-slate-700 mr-2" ]
             [ txt "%s" article.title ];
           span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
         ];
-      div
-        [ class_ "mt-3" ]
+      ul
+        [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
         (List.map
-           (fun tag -> p [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
+           (fun tag -> li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
            (Array.to_list article.tags));
-      div [ class_ "content mt-7" ] [ article.content ];
+      div [ class_ "mt-3" ] [ article.content ];
     ]
 
-let layout content req =
+let layout ctt =
   html
     [ lang "en" ]
     [
@@ -81,9 +139,11 @@ let layout content req =
         [
           title [] "Lokasku";
           meta [ charset "utf-8" ];
+          meta
+            [ name "viewport"; content "width=device-width, maximum-scale=1" ];
           link [ rel "stylesheet"; href "/static/output.css" ];
         ];
       body
-        [ class_ "flex justify-center items-center" ]
-        [ div [ class_ "h-screen w-2/5 mt-11" ] [ search req; content ] ];
+        [ class_ "mx-auto min-h-svh max-w-prose py-12 px-4" ]
+        [ div [] [ ctt; footer ] ];
     ]
