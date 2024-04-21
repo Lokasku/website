@@ -18,7 +18,7 @@ let search request =
                 "w-full border rounded-lg px-2 py-1 focus:outline-none \
                  focus:border-slate-300";
               name "search";
-              placeholder "Search for tags separated by spaces";
+              placeholder "Search for tags";
               type_ "text";
             ];
         ];
@@ -41,8 +41,8 @@ let presentation =
           txt
             "Welcome, my name is Lokasku, I'm 16 years old and I'm currently \
              in 11th grade.\n\
-            \      I'm a French citizen and have dual Polish nationality. My \
-             main interests are computer science,\n\
+            \      I am a French citizen with dual French and Polish \
+             nationality. My main interests are computer science,\n\
             \      mathematics and linguistics, but I mainly do programming.";
         ];
       a
@@ -104,12 +104,17 @@ let art_list arts =
                       [ txt "%s" article.title ];
                     span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
                   ];
-                ul
-                  [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
-                  (List.map
-                     (fun tag ->
-                       li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
-                     (Array.to_list article.tags));
+                (if Array.length article.tags > 0 then
+                   ul
+                     [
+                       class_
+                         "flex gap-1 flex-wrap pt-3 font-mono text-gray-500";
+                     ]
+                     (List.map
+                        (fun tag ->
+                          li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
+                        (Array.to_list article.tags))
+                 else div [] []);
               ])
           arts))
 
@@ -125,11 +130,13 @@ let art_view article =
             [ txt "%s" article.title ];
           span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
         ];
-      ul
-        [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
-        (List.map
-           (fun tag -> li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
-           (Array.to_list article.tags));
+      (if Array.length article.tags > 0 then
+         ul
+           [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
+           (List.map
+              (fun tag -> li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
+              (Array.to_list article.tags))
+       else div [] []);
       div [ class_ "mt-3" ] [ article.content ];
     ]
 

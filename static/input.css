@@ -21,7 +21,7 @@
         @apply text-lg font-normal leading-relaxed py-2.5 text-slate-700;
     }
     a {
-        @apply font-medium text-blue-700 hover:underline;
+        @apply font-medium text-[#06c] hover:underline;
     }
     hr {
         @apply my-2 border-gray-400;
