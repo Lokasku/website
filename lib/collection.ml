@@ -1,6 +1,6 @@
 open Article
 
-let all_article = [ Introduction.article; Lambdacalculus.article ]
+let all_article = [ Presentation.article ]
 
 let filter_articles_by_tags tag_list =
   let filter_article article =

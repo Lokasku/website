@@ -1,4 +1,5 @@
 open Website.Article
+open Website.Collection
 open Utils
 open Dream_html
 open HTML
@@ -82,8 +83,8 @@ let footer =
 let art_list arts =
   div []
     (List.rev
-       (List.mapi
-          (fun i article ->
+       (List.map
+          (fun article ->
             div
               [
                 class_
@@ -97,7 +98,8 @@ let art_list arts =
                       [
                         class_
                           "break-words pr-2 text-xl font-semibold text-gray-600";
-                        href "/article/%d" i;
+                        href "/article/%d"
+                        @@ Option.get (Utils.index_of article all_article);
                       ]
                       [ txt "%s" article.title ];
                     span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];

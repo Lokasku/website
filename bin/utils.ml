@@ -11,3 +11,9 @@ let get_style tag =
   | Some (_, (background, border, text_color)) ->
       Printf.sprintf "%s %s %s %s" base border background text_color
   | None -> base
+
+let index_of item lst =
+  let indexed_lst = List.mapi (fun i x -> (i, x)) lst in
+  match List.find_opt (fun (_, x) -> x = item) indexed_lst with
+  | Some (i, _) -> Some i
+  | None -> None

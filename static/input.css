@@ -5,7 +5,19 @@
 @tailwind utilities;
 
 @layer base {
-    p, a {
+    h2, h3, h4 {
+        @apply break-words text-gray-600;
+    }
+    h2 {
+        @apply font-bold text-3xl mt-8;
+    }
+    h3 {
+        @apply font-semibold text-2xl mt-6;
+    }
+    h4 {
+        @apply font-semibold text-xl mt-4;
+    }
+    p, a, li {
         @apply text-lg font-normal leading-relaxed py-2.5 text-slate-700;
     }
     a {
@@ -13,5 +25,11 @@
     }
     hr {
         @apply my-2 border-gray-400;
+    }
+    ul, ol {
+        @apply list-disc list-inside pl-8 py-2.5;
+    }
+    li {
+        @apply pt-0.5 pb-0;
     }
 }
