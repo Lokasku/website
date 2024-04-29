@@ -74,7 +74,7 @@ let footer =
           br [];
           txt "Licensed under ";
           a
-            [ href "https://creativecommons.org/licenses/by-nc/4.0/deed.fr" ]
+            [ href "https://creativecommons.org/licenses/by-nc/4.0/deed.en" ]
             [ txt "CC BY-NC 4.0 DEED" ];
           txt ".";
         ];

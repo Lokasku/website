@@ -3,8 +3,8 @@ open HTML
 
 let article : Article.article =
   {
-    title = "Introduction";
-    date = "2024-04-20";
+    title = "Presentation";
+    date = "2024-04-21";
     tags = [||];
     content =
       div []
@@ -20,11 +20,11 @@ let article : Article.article =
             [
               txt
                 "My name is Lokasku, I'm a 16-year-old French citizen with \
-                 dual French and Polish nationality, in 11th grade. My areas \
-                 of interest are computing, mathematics and linguistics, but \
-                 computing remains the predominant one. It turns out that I \
-                 particularly like functional stuff, and this is characterized \
-                 by my choice of languages and tools.";
+                 dual French and Polish nationality and I'm in 11th grade. My \
+                 areas of interest are computing, mathematics and linguistics, \
+                 but computing remains the predominant one. It turns out that \
+                 I particularly like functional stuff, and this is \
+                 characterized by my choice of languages and tools.";
             ];
           h2 [] [ txt "Computing" ];
           h3 [] [ txt "Hardware" ];
@@ -114,7 +114,7 @@ let article : Article.article =
                 ]
                 [ txt "NixOS ARM" ];
               txt
-                "(aarch64 in this case) in a Podman container configured with \
+                " (aarch64 in this case) in a Podman container configured with \
                  Nix. This server definitely has every conceivable quality.";
             ];
           h3 [] [ txt "Usage" ];
