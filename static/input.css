@@ -9,7 +9,7 @@
         @apply break-words text-gray-600;
     }
     h2 {
-        @apply font-bold text-3xl mt-8;
+        @apply font-bold text-3xl pt-8;
     }
     h3 {
         @apply font-semibold text-2xl mt-6;
@@ -27,9 +27,12 @@
         @apply my-2 border-gray-400;
     }
     ul, ol {
-        @apply list-disc list-inside pl-8 py-2.5;
+        @apply list-disc list-inside pl-9 py-2.5;
     }
     li {
         @apply pt-0.5 pb-0;
+    }
+    img {
+        @apply rounded-[1rem] shadow-lg mt-6 mb-9;
     }
 }

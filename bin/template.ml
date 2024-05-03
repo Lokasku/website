@@ -108,7 +108,8 @@ let art_list arts =
                    ul
                      [
                        class_
-                         "flex gap-1 flex-wrap pt-3 font-mono text-gray-500";
+                         "flex gap-1 flex-wrap pt-3 font-mono text-gray-500 ml \
+                          list-none p-0";
                      ]
                      (List.map
                         (fun tag ->
@@ -123,16 +124,22 @@ let art_view article =
     [
       back_to_homepage;
       p
-        [ class_ "inline" ]
-        [
+        [ class_ "text-4xl font-bold text-slate-700 mr-2" ]
+        [ txt "%s" article.title ];
+      p [ class_ "text-gray-500 text-base py-4" ] [ txt "%s" article.date ];
+      (match article.edited with
+      | Some date ->
           span
-            [ class_ "text-4xl font-bold text-slate-700 mr-2" ]
-            [ txt "%s" article.title ];
-          span [ class_ "text-gray-400" ] [ txt " — %s" article.date ];
-        ];
+            [ class_ "text-gray-500 text-base" ]
+            [ i [] [ txt " - Edited on %s" date ] ]
+      | None -> span [] []);
       (if Array.length article.tags > 0 then
          ul
-           [ class_ "flex gap-1 flex-wrap pt-3 font-mono text-gray-500" ]
+           [
+             class_
+               "flex gap-1 flex-wrap pt-1 font-mono text-gray-500 list-none \
+                p-0 py-2";
+           ]
            (List.map
               (fun tag -> li [ class_ "%s" (get_style tag) ] [ txt "%s" tag ])
               (Array.to_list article.tags))

@@ -6,7 +6,7 @@ let current_year () =
   tm.Unix.tm_year + 1900
 
 let get_style tag =
-  let base = "rounded-lg border px-1.5 text-gray-500 mr-0.5" in
+  let base = "rounded-lg border px-1.5 text-base text-gray-500 mr-0.5" in
   match List.find_opt (fun (x, _) -> x = tag) common_tags with
   | Some (_, (background, border, text_color)) ->
       Printf.sprintf "%s %s %s %s" base border background text_color

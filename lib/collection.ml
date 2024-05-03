@@ -1,6 +1,10 @@
 open Article
 
-let all_article = [ Presentation.article ]
+let all_article =
+  [
+    Presentation.article;
+    Efficient_memory_approach_for_conways_game_of_life.article;
+  ]
 
 let filter_articles_by_tags tag_list =
   let filter_article article =

@@ -3,6 +3,7 @@ type tag = string
 type article = {
   title : string;
   date : string;
+  edited : string option;
   content : Dream_html.node;
   tags : tag array;
 }

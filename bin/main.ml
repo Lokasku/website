@@ -48,24 +48,6 @@ let () =
                          continuum."
                       @@ Dream.param req "id";
                     ]));
-         Dream.get "/static/:file" (fun req ->
-             let file = Dream.param req "file" in
-             let content =
-               if String.ends_with ~suffix:".css" file then
-                 let css_content =
-                   let file_path = "static/" ^ file in
-                   let open_in_channel = open_in_bin file_path in
-                   let content =
-                     really_input_string open_in_channel
-                       (in_channel_length open_in_channel)
-                   in
-                   close_in open_in_channel;
-                   content
-                 in
-                 Dream.respond
-                   ~headers:[ ("Content-Type", "text/css") ]
-                   css_content
-               else Dream.not_found req
-             in
-             content);
+         Dream.get "/static/**" (Dream.static "static/");
+         Dream.get "/assets/**" (Dream.static "lib/articles/assets/");
        ]

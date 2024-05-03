@@ -4,7 +4,8 @@ open HTML
 let article : Article.article =
   {
     title = "Presentation";
-    date = "2024-04-21";
+    date = "April 21, 2024";
+    edited = None;
     tags = [||];
     content =
       div []
