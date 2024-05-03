@@ -4,7 +4,7 @@ open HTML
 let article : Article.article =
   {
     title = "Efficient Memory-Free Approach for Conway's Game of Life";
-    date = "May 05, 2024";
+    date = "May 3, 2024";
     edited = None;
     tags = [| "conway" |];
     content =
