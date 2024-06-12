@@ -39,8 +39,8 @@ let presentation =
       p []
         [
           txt
-            "Welcome, my name is Lokasku, I'm 16 years old and I'm currently \
-             in 11th grade.\n\
+            "Welcome, my name is Lokasku, I'm 17 years old and I'm currently \
+             in 12th grade.\n\
             \      I am a French citizen with dual French and Polish \
              nationality. My main interests are computer science,\n\
             \      mathematics and linguistics, but I mainly do programming.";
@@ -55,7 +55,7 @@ let presentation =
       p []
         [
           txt "You can contact me at lukasku at proton dot me and find me on ";
-          a [ href "https://github.com/Lokasku" ] [ txt "GitHub" ];
+          a [ href "https://github.com/lokasku" ] [ txt "GitHub" ];
           txt " or ";
           a [ href "https://x.com/lokasku" ] [ txt "X" ];
           txt ".";

@@ -20,8 +20,8 @@ let article : Article.article =
           p []
             [
               txt
-                "My name is Lokasku, I'm a 16-year-old French citizen with \
-                 dual French and Polish nationality and I'm in 11th grade. My \
+                "My name is Lokasku, I'm a 17-year-old French citizen with \
+                 dual French and Polish nationality and I'm in 12th grade. My \
                  areas of interest are computing, mathematics and linguistics, \
                  but computing remains the predominant one. It turns out that \
                  I particularly like functional stuff, and this is \
@@ -66,14 +66,14 @@ let article : Article.article =
                 ];
               li []
                 [
-                  a [ href "https://kakoune.org" ] [ txt "Kakoune" ];
-                  txt " as my main code editor, and sometimes Emacs or VSCode.";
+                  a [ href "https://github.com/lokasku/vide" ] [ txt "Vide" ];
+                  txt " as my main IDE, and sometimes Emacs or VSCode.";
                 ];
               li [] [ txt "Fish as my main shell." ];
               li [] [ txt "Alacritty as my terminal emulator." ];
               li []
                 [
-                  a [ href "https://xmonad.org/" ] [ txt "XMonad" ];
+                  a [ href "https://hyprland.org/" ] [ txt "Hyprland" ];
                   txt " as my tilling window manager.";
                 ];
             ];
@@ -90,10 +90,12 @@ let article : Article.article =
                 [
                   txt "OCaml and sometimes ";
                   a
-                    [ href "https://en.wikipedia.org/wiki/Common_Lisp" ]
-                    [ txt "Common Lisp" ];
+                    [ href "https://www.scheme.org/" ]
+                    [ txt "Scheme" ];
+                  txt " (";
+                  a [ href "https://racket-lang.org/" ] [ txt "Racket" ];
                   txt
-                    " for fun, and because in some applications they're more \
+                    " especially) for fun, and because in some applications they're more \
                      practical than other languages.";
                 ];
             ];
