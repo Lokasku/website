@@ -50,4 +50,5 @@ let () =
                     ]));
          Dream.get "/static/**" (Dream.static "static/");
          Dream.get "/assets/**" (Dream.static "lib/articles/assets/");
+         Dream.get "/lil" (fun _ -> Dream_html.respond (p [] [ txt "₊•.°.⋆✮⋆.°.•₊" ]));
        ]
